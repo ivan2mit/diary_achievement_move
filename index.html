@@ -149,13 +149,13 @@ body.clean{cursor:none}
     <div id="fg"></div>
     <div id="titles"></div>
 </div>
-<audio id="music" src="assets/music.m4a" preload="auto"></audio>
+<audio id="music" preload="auto"></audio>
 <button id="start">▶ Смотреть</button>
 <div id="ui">
     <button id="play" title="Пробел">❚❚</button>
     <input id="seek" type="range" min="0" max="98" step="0.01" value="0">
     <span class="tm" id="tm">0:00 / 1:38</span>
-    <button id="mute" title="Звук (M)">♪</button>
+    <button id="mute" title="Звук: динамичный, спокойный, выключен (M)">♪</button>
     <span id="chips"></span>
 </div>
 
@@ -742,12 +742,24 @@ function play() {
     if (now >= DUR) now = 0;
     playing = true; lastTs = performance.now(); requestAnimationFrame(tick); draw();
     $('start').classList.add('off');
-    music.currentTime = now; music.play().catch(() => {});
+    if (TRACKS[sound][0]) { music.currentTime = now; music.play().catch(() => {}); }
 }
 function pause() { playing = false; music.pause(); draw(); }
 window.seek = (t) => { playing = false; music.pause(); now = Math.max(0, Math.min(DUR, t)); draw(); };
 $('start').onclick = play;
-$('mute').onclick = () => { music.muted = !music.muted; $('mute').style.opacity = music.muted ? .4 : 1; };
+// Варианты звука переключаются по кругу: динамичный, спокойный, без звука.
+const TRACKS = [['assets/music2.m4a', '♪ динамичный'], ['assets/music.m4a', '♪ спокойный'], [null, '♪ выкл']];
+let sound = -1;
+function setTrack(i) {
+    sound = (i + TRACKS.length) % TRACKS.length;
+    const [src, label] = TRACKS[sound];
+    $('mute').textContent = label;
+    music.pause();
+    if (!src) { music.removeAttribute('src'); return; }
+    music.src = src;
+    music.addEventListener('loadedmetadata', () => { music.currentTime = now; if (playing) music.play().catch(() => {}); }, { once: true });
+}
+$('mute').onclick = () => setTrack(sound + 1);
 playBtn.onclick = () => (playing ? pause() : play());
 seekEl.oninput = () => window.seek(+seekEl.value);
 SCENES.forEach(([t, name], i) => {
@@ -768,6 +780,7 @@ let idle;
 addEventListener('mousemove', () => { ui.classList.remove('hide'); clearTimeout(idle); idle = setTimeout(() => playing && ui.classList.add('hide'), 2500); });
 addEventListener('resize', fit);
 const q = new URLSearchParams(location.search);
+setTrack(q.get('music') === '1' ? 1 : 0);
 if (q.has('clean')) document.body.classList.add('clean');
 fit();
 // Звук браузер разрешает только после нажатия, поэтому ролик ждёт кнопку «Смотреть» или пробел.
