@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Космическая система достижений — ролик</title>
+<style>
+@font-face{font-family:'Montserrat';font-weight:400 700;font-display:block;src:url('fonts/montserrat-400-700-cyrillic.woff2') format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Montserrat';font-weight:400 700;font-display:block;src:url('fonts/montserrat-400-700-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Philosopher';font-weight:400;font-display:block;src:url('fonts/philosopher-400-cyrillic.woff2') format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Philosopher';font-weight:400;font-display:block;src:url('fonts/philosopher-400-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'Philosopher';font-weight:700;font-display:block;src:url('fonts/philosopher-700-cyrillic.woff2') format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'Philosopher';font-weight:700;font-display:block;src:url('fonts/philosopher-700-latin.woff2') format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+
+:root{
+    --orange:#e28d30; --orange-soft:#f8c27c; --red:#a33924; --green:#4a7a62; --steel:#4e6177;
+    --navy:#1a2653; --champagne:#f1edd4; --paper:#faf8ee; --line:#e3dfc6; --text:#4f4c4d;
+}
+html,body{margin:0;height:100%;background:#0b1027;overflow:hidden}
+body{font-family:'Montserrat',sans-serif;color:var(--champagne)}
+#stage{position:absolute;left:50%;top:50%;width:1920px;height:1080px;overflow:hidden;
+    background:radial-gradient(ellipse 75% 70% at 50% 42%,#26366f 0%,#1a2653 46%,#111a3e 100%)}
+#skywrap,#sky,#fg,#titles{position:absolute;left:0;top:0;width:1920px;height:1080px}
+#sky{transform-origin:0 0}
+#shade{position:absolute;left:0;right:0;bottom:0;height:330px;background:linear-gradient(rgba(14,21,52,0),rgba(14,21,52,.86) 62%)}
+.n{position:absolute;left:0;top:0;width:0;height:0;will-change:transform,opacity}
+.n>*{position:absolute;left:0;top:0;transform:translate(-50%,-50%)}
+.n>.n{transform:none}
+.n img{display:block}
+.dot{position:absolute;border-radius:50%;background:var(--champagne)}
+.glow{border-radius:50%;background:radial-gradient(circle,rgba(248,194,124,.75) 0%,rgba(226,141,48,.28) 38%,rgba(226,141,48,0) 70%)}
+.ring{width:120px;height:120px;border-radius:50%;border:3px solid var(--orange-soft);box-sizing:border-box}
+
+/* Титры */
+.title{font-family:'Philosopher',serif;font-weight:700;font-size:58px;line-height:1;white-space:nowrap;text-align:center;
+    text-shadow:0 2px 18px rgba(10,15,40,.9)}
+.title.b{font-size:46px;color:var(--orange-soft)}
+.big{font-family:'Philosopher',serif;font-weight:700;font-size:92px;line-height:1.08;text-align:center;white-space:nowrap;
+    text-shadow:0 4px 30px rgba(10,15,40,.8)}
+.pat{width:1920px;height:96px;background:url('assets/pattern-tile.svg') repeat-x center/auto 96px}
+
+/* Сцена 2: журнал */
+.jcard{width:800px;height:500px;border-radius:26px;background:var(--paper);box-shadow:0 30px 80px rgba(6,10,30,.55)}
+.jhead{position:absolute;left:36px;top:26px;font-weight:700;font-size:26px;color:var(--navy)}
+.jsub{position:absolute;right:36px;top:32px;font-size:18px;color:#8b8779}
+.jname{position:absolute;left:36px;height:16px;border-radius:8px;background:var(--line)}
+.jcell{width:70px;height:52px;border-radius:8px;background:var(--line);color:var(--text);font-weight:600;font-size:26px;
+    display:flex;align-items:center;justify-content:center}
+
+/* Сцена 4: телефон и отметки */
+.phone{width:300px;height:610px;border-radius:46px;background:#0c1330;border:4px solid #55688a;box-sizing:border-box;
+    box-shadow:0 30px 80px rgba(6,10,30,.6)}
+.screen{position:absolute;left:10px;top:10px;right:10px;bottom:10px;border-radius:34px;background:var(--paper);overflow:hidden}
+.ptitle{position:absolute;left:0;right:0;top:34px;text-align:center;font-weight:700;font-size:21px;color:var(--navy)}
+.psub{position:absolute;left:0;right:0;top:64px;text-align:center;font-size:14px;color:var(--steel)}
+.pbtns{position:absolute;left:0;right:0;bottom:26px;height:70px;border-top:1px solid var(--line)}
+.scard{width:214px;height:270px;border-radius:24px;background:#fff;border:1px solid var(--line);box-sizing:border-box;
+    box-shadow:0 10px 26px rgba(26,38,83,.16);text-align:center}
+.scard i{display:block;margin:36px auto 18px;width:96px;height:96px;border-radius:50%;font:700 38px/96px 'Philosopher',serif;font-style:normal;color:#fff}
+.scard b{display:block;font-size:24px;color:var(--navy)}
+.scard span{display:block;margin-top:10px;font-size:13px;color:#8b8779}
+.pbtn{width:54px;height:54px;border-radius:50%;background:#fff;border:1px solid var(--line);box-sizing:border-box;
+    display:flex;align-items:center;justify-content:center}
+.finger{width:50px;height:50px;border-radius:50%;background:rgba(26,38,83,.28);border:3px solid rgba(26,38,83,.55);box-sizing:border-box}
+.mark{width:170px;text-align:center}
+.mark .mname{font-size:19px;font-weight:500;color:#aab6d6;white-space:nowrap}
+.mark .mpic{height:150px;display:flex;align-items:center;justify-content:center}
+.mark .mwhy{font-size:27px;font-weight:600;white-space:nowrap}
+.mpts{font-family:'Philosopher',serif;font-weight:700;font-size:70px;color:var(--orange);white-space:nowrap}
+.mpts.neg{color:#e0745c}
+.mpts.zero{color:#aab6d6}
+.badge{padding:14px 30px;border-radius:40px;background:var(--orange);color:var(--navy);font-weight:700;font-size:28px;white-space:nowrap}
+
+/* Сцена 5: планеты */
+.diploma{width:96px;height:128px;border-radius:6px;background:var(--paper);box-shadow:0 8px 24px rgba(6,10,30,.5);overflow:hidden}
+.diploma i{position:absolute;left:14px;right:14px;top:16px;height:9px;border-radius:5px;background:var(--orange)}
+.diploma b{position:absolute;left:14px;right:14px;height:4px;border-radius:2px;background:var(--line)}
+.diploma u{position:absolute;right:14px;bottom:14px;width:24px;height:24px;border-radius:50%;background:var(--red)}
+.orbit{border-radius:50%;border:1.5px dashed rgba(241,237,212,.26);box-sizing:border-box}
+.plabel{white-space:nowrap;font-size:20px;font-weight:500;color:var(--champagne);text-align:center}
+.plabel b{font-family:'Philosopher',serif;font-size:36px;color:var(--orange);margin-right:7px}
+.plabel span{display:block;font-size:16px;color:var(--orange-soft);margin-top:2px}
+
+/* Сцена 6: созвездие */
+.cnt{white-space:nowrap;text-align:center}
+.cnt b{display:block;font-family:'Philosopher',serif;font-size:84px;line-height:.9;color:var(--orange)}
+.cnt span{font-size:15px;font-weight:500}
+.tag{white-space:nowrap;font-size:14px;font-weight:600;padding:5px 12px;border-radius:14px;background:rgba(241,237,212,.12);border:1px solid rgba(241,237,212,.4)}
+.tag b{color:var(--orange-soft)}
+.small{white-space:nowrap;font-size:12px;font-weight:500;color:#c9d2ec}
+#lines{position:absolute;left:0;top:0;overflow:visible}
+
+/* Сцена 7: направления */
+.prog{text-align:center;white-space:nowrap}
+.prog b{display:block;font-size:30px;font-weight:700;line-height:1.2}
+.prog span{display:block;margin-top:6px;font-size:20px;font-weight:600;letter-spacing:.02em}
+.prog.s b{font-size:26px;font-weight:600}
+.prog.s span{font-size:17px;font-weight:500}
+.dsh{white-space:nowrap;font-size:19px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#e9907a}
+.book,.flower{display:block;overflow:visible}
+.tdot{width:9px;height:9px;border-radius:50%;background:var(--champagne);box-shadow:0 0 10px 2px rgba(248,194,124,.7)}
+.score{text-align:center;white-space:nowrap}
+.score b{display:block;font-family:'Philosopher',serif;font-size:112px;line-height:1;color:var(--orange)}
+.score span{font-size:26px;font-weight:500}
+
+/* Сцена 8: подарки */
+.step{width:92px;height:92px;border-radius:50%;background:var(--navy);border:3px solid var(--champagne);box-sizing:border-box;
+    display:flex;align-items:center;justify-content:center}
+.cap{text-align:center;white-space:nowrap}
+.cap b{display:block;font-size:34px;font-weight:700}
+.cap span{display:block;margin-top:8px;font-size:21px;font-weight:500;color:#c9d2ec}
+.track{height:4px;border-radius:2px;background:var(--champagne);transform:none!important;left:0!important;top:-2px!important}
+.gbody{width:112px;height:84px;border-radius:8px;background:var(--orange);
+    background-image:linear-gradient(90deg,transparent 44%,var(--champagne) 44%,var(--champagne) 56%,transparent 56%)}
+.glid{width:130px;height:30px;border-radius:8px;background:var(--orange-soft);
+    background-image:linear-gradient(90deg,transparent 45%,var(--champagne) 45%,var(--champagne) 55%,transparent 55%)}
+
+/* Панель управления (в ролик не попадает) */
+#ui{position:fixed;left:0;right:0;bottom:0;padding:14px 18px;display:flex;gap:12px;align-items:center;font-size:13px;
+    background:linear-gradient(transparent,rgba(5,8,24,.9));transition:opacity .3s;z-index:10}
+#ui.hide{opacity:0;pointer-events:none}
+#ui button{font:inherit;color:var(--champagne);background:rgba(241,237,212,.12);border:1px solid rgba(241,237,212,.3);
+    border-radius:8px;padding:6px 10px;cursor:pointer}
+#ui button:hover{background:rgba(241,237,212,.22)}
+#ui input{flex:1;accent-color:var(--orange)}
+#ui .tm{width:92px;text-align:right;font-variant-numeric:tabular-nums}
+body.clean #ui{display:none}
+body.clean{cursor:none}
+</style>
+</head>
+<body>
+<div id="stage">
+    <div id="skywrap"><div id="sky"><svg id="lines" width="1920" height="1080"></svg></div></div>
+    <div id="shade"></div>
+    <div id="fg"></div>
+    <div id="titles"></div>
+</div>
+<div id="ui">
+    <button id="play" title="Пробел">❚❚</button>
+    <input id="seek" type="range" min="0" max="98" step="0.01" value="0">
+    <span class="tm" id="tm">0:00 / 1:38</span>
+    <span id="chips"></span>
+</div>
+
+<script src="shapes.js"></script>
+<script>
+'use strict';
+/* Ролик собран как функция от времени: любой кадр можно получить через window.seek(t).
+   Поэтому его можно и смотреть в браузере, и покадрово выгружать в видео. */
+const DUR = 98;
+const $ = (id) => document.getElementById(id);
+const sky = $('sky'), skywrap = $('skywrap'), fg = $('fg'), titles = $('titles');
+const SH = window.SHAPES;
+
+// ---------- движок ----------
+const E = {
+    lin: (p) => p,
+    in: (p) => p * p * p,
+    out: (p) => 1 - Math.pow(1 - p, 3),
+    io: (p) => (p < .5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2),
+    back: (p) => 1 + 2.4 * Math.pow(p - 1, 3) + 1.4 * Math.pow(p - 1, 2),
+};
+const items = [], fxs = [], lives = [];
+function reg(el) {
+    if (!el._m) { el._m = { base: { x: 0, y: 0, s: 1, r: 0, o: 1 }, tr: {} }; items.push(el); }
+    return el._m;
+}
+function set(el, props) { Object.assign(reg(el).base, props); return el; }
+function to(el, t0, d, props, ease = E.io) {
+    const m = reg(el);
+    for (const k in props) {
+        const segs = m.tr[k] || (m.tr[k] = []);
+        const last = segs[segs.length - 1];
+        if (last && t0 < last.t1 - 1e-6) console.warn('перекрытие дорожек', k, t0, el);
+        segs.push({ t0, t1: t0 + d, from: last ? last.to : m.base[k], to: props[k], ease });
+    }
+    return el;
+}
+function val(m, k, t) {
+    let v = m.base[k];
+    const segs = m.tr[k];
+    if (!segs) return v;
+    for (const s of segs) {
+        if (t >= s.t1) v = s.to;
+        else { if (t > s.t0) v = s.from + (s.to - s.from) * s.ease((t - s.t0) / (s.t1 - s.t0)); break; }
+    }
+    return v;
+}
+function fx(t0, d, fn, ease = E.io) { fxs.push({ t0, d, fn, ease, last: -1 }); }
+function step(t0, fn) { fx(t0, 0, (p) => fn(p >= 1), E.lin); }
+function live(fn) { lives.push(fn); }
+function applyDom(el, v) {
+    const o = v.o < 0 ? 0 : v.o > 1 ? 1 : v.o;
+    if (o < .004) { if (!el._hid) { el.style.visibility = 'hidden'; el._hid = true; } return; }
+    if (el._hid) { el.style.visibility = ''; el._hid = false; }
+    el.style.opacity = o;
+    el.style.transform = `translate(${v.x.toFixed(2)}px,${v.y.toFixed(2)}px) rotate(${v.r.toFixed(2)}deg) scale(${v.s.toFixed(4)})`;
+}
+function render(t) {
+    for (const el of items) {
+        const m = el._m, v = {};
+        for (const k in m.base) v[k] = val(m, k, t);
+        if (el.apply) el.apply(v); else applyDom(el, v);
+    }
+    for (const f of fxs) {
+        let p = f.d ? (t - f.t0) / f.d : (t >= f.t0 ? 1 : 0);
+        p = p < 0 ? 0 : p > 1 ? 1 : p;
+        if (p !== f.last) { f.last = p; f.fn(f.ease(p)); }
+    }
+    for (const fn of lives) fn(t);
+}
+
+// ---------- помощники ----------
+function node(parent, html, x = 0, y = 0, extra) {
+    const el = document.createElement('div');
+    el.className = 'n';
+    el.innerHTML = html;
+    parent.appendChild(el);
+    return set(el, Object.assign({ x, y }, extra));
+}
+const img = (name, w) => `<img src="assets/${name}" style="width:${w}px" alt="">`;
+const pop = (el, t, d = .6) => { to(el, t, d, { s: 1 }, E.back); to(el, t, d * .5, { o: 1 }, E.out); return el; };
+const show = (el, t, d = .6) => to(el, t, d, { o: 1 }, E.out);
+const hide = (el, t, d = .5) => to(el, t, d, { o: 0 }, E.in);
+const ping = (el, t, k = 1.35) => { to(el, t, .18, { s: k }, E.out); to(el, t + .18, .42, { s: 1 }, E.io); };
+function title(t0, t1, text, row = 0) {
+    const y = row ? 974 : 900;
+    const el = node(titles, `<div class="title${row ? ' b' : ''}">${text}</div>`, 960, y + 22, { o: 0 });
+    to(el, t0, .7, { o: 1, y }, E.out);
+    to(el, t1 - .5, .5, { o: 0, y: y - 14 }, E.in);
+}
+let seed = 20261009;
+function rnd() { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }
+
+// ---------- небо и камера ----------
+// Камера показывает точку мира (x, y) в точке экрана (960, 460) с масштабом s.
+const HOME = { x: 960, y: 400 };
+const cam = { apply(v) { sky.style.transform = `translate(${(960 - v.x * v.s).toFixed(2)}px,${(460 - v.y * v.s).toFixed(2)}px) scale(${v.s.toFixed(4)})`; } };
+const CAM4 = { x: 1044, y: 400, s: 1.9 };
+const w2s = (c, x, y) => [960 + (x - c.x) * c.s, 460 + (y - c.y) * c.s];
+
+const twinkles = [];
+for (let i = 0; i < 230; i++) {
+    const d = document.createElement('div');
+    d.className = 'dot';
+    const size = 1.2 + rnd() * 2.2, base = .18 + rnd() * .5;
+    d.style.cssText = `left:${-150 + rnd() * 2220}px;top:${-120 + rnd() * 1320}px;width:${size}px;height:${size}px;opacity:${base}`;
+    sky.insertBefore(d, sky.firstChild);
+    if (i % 3 === 0) twinkles.push({ d, base, w: .8 + rnd() * 2.2, ph: rnd() * 6.28 });
+}
+live((t) => { for (const k of twinkles) k.d.style.opacity = (k.base * (.55 + .45 * Math.sin(t * k.w + k.ph))).toFixed(3); });
+
+const PLANETS = [
+    ['mercury', 'Меркурий', 3, 60, -10], ['venus', 'Венера', 5, 66, 150], ['earth', 'Земля', 10, 84, 20], ['mars', 'Марс', 15, 70, 110],
+    ['neptune', 'Нептун', 20, 84, -25], ['uranus', 'Уран', 25, 84, 50], ['saturn', 'Сатурн', 30, 140, 160], ['jupiter', 'Юпитер', 35, 104, 35],
+].map(([file, name, pts, size, a], i) => {
+    const rx = 190 + i * 85, ry = 110 + i * 38, rad = a * Math.PI / 180;
+    return { file, name, pts, size, rx, ry, x: HOME.x + rx * Math.cos(rad), y: HOME.y + ry * Math.sin(rad) };
+});
+const MERC = PLANETS[0];
+
+set(cam, { x: HOME.x, y: HOME.y, s: 2.6 });
+to(cam, 0, 20, { s: 2.3 }, E.lin);
+to(cam, 20, 2, CAM4);
+to(cam, 36.2, 2, { x: MERC.x, y: MERC.y, s: 2.4 });
+to(cam, 40.4, 3, { x: HOME.x, y: HOME.y, s: 1.15 });
+to(cam, 43.4, 5, { s: 1.12 }, E.lin);
+to(cam, 48.4, 2.2, { x: 470, y: 215, s: 2.25 });
+to(cam, 50.6, 12.8, { x: 495, s: 2.12 }, E.lin);
+to(cam, 63.4, 2, { x: HOME.x, y: HOME.y, s: 1.25 });
+to(cam, 65.4, 22.4, { s: 1.15 }, E.lin);
+to(cam, 87.8, 3.2, { x: 960, y: 460, s: 1 });
+
+set(skywrap, {});
+skywrap.apply = (v) => { skywrap.style.opacity = v.o; };
+to(skywrap, 63.6, 1.4, { o: .2 });
+to(skywrap, 87.6, 2.2, { o: 1 });
+
+// ---------- сцена 1. Хук (0:00–0:07) ----------
+const glow0 = node(sky, '<div class="glow" style="width:260px;height:260px"></div>', HOME.x, HOME.y, { o: 0, s: .3 });
+const star0 = node(sky, img('star.webp', 64), HOME.x, HOME.y, { o: 0, s: 0 });
+pop(star0, 1.0, .9);
+to(glow0, 1.0, 1.4, { o: .9, s: 1 }, E.out);
+live((t) => { glow0.firstChild.style.opacity = (.78 + .22 * Math.sin(t * 2.1)).toFixed(3); });
+title(0.9, 6.6, 'Каждое занятие — шаг вперёд.');
+title(3.5, 6.6, 'Как его увидеть?', 1);
+
+// ---------- сцена 2. Проблема (0:07–0:15) ----------
+const jcard = node(fg, `<div class="jcard"><div class="jhead">Журнал группы</div><div class="jsub">октябрь</div>${
+    [0, 1, 2, 3, 4].map((j) => `<div class="jname" style="top:${142 + j * 66}px;width:${110 + (j * 37) % 60}px"></div>`).join('')}</div>`,
+    960, 430, { o: 0, s: .94 });
+show(jcard, 7.2, .7); to(jcard, 7.2, .7, { s: 1 }, E.out);
+const GRADES = '5445н34 4354454 н453445 5544н35 3454544'.split(' ');
+const cells = [];
+for (let j = 0; j < 5; j++) for (let i = 0; i < 7; i++) {
+    const c = node(fg, `<div class="jcell">${GRADES[j][i]}</div>`, 818 + i * 80, 330 + j * 66, { o: 0 });
+    show(c, 7.5 + j * .07 + i * .04, .4);
+    const tj = 11.4 + rnd() * .25;
+    to(c, tj, .14, { r: 5 }); to(c, tj + .14, .14, { r: -5 }); to(c, tj + .28, .14, { r: 4 }); to(c, tj + .42, .14, { r: 0 });
+    const a = rnd() * 6.283, rad = 260 + rnd() * 520;
+    to(c, 12.3, 1.6, { x: 960 + Math.cos(a) * rad * 1.25, y: 440 + Math.sin(a) * rad * .52, s: .3, r: (rnd() - .5) * 240 }, E.out);
+    const tc = 15 + rnd() * .35;
+    to(c, tc, .95, { x: 960, y: 460, s: .05 }, E.in);
+    to(c, tc + .7, .25, { o: 0 }, E.in);
+    cells.push(c.firstChild);
+}
+hide(jcard, 12.1, .6); to(jcard, 12.1, .6, { s: 1.04 }, E.in);
+fx(12.2, 1.0, (p) => {
+    for (const d of cells) {
+        d.style.borderRadius = `${8 + p * 18}px`;
+        d.style.width = `${70 - p * 18}px`;
+        d.style.background = `rgb(${227 + p * 14},${223 + p * 14},${198 + p * 14})`;
+        d.style.color = `rgba(79,76,77,${1 - p})`;
+    }
+});
+title(7.7, 14.4, 'Оценка говорит, как прошёл урок.');
+title(10.4, 14.4, 'Но не показывает путь.', 1);
+
+// ---------- сцена 3. Название (0:15–0:20) ----------
+ping(star0, 15.95, 1.7);
+to(glow0, 15.95, .25, { s: 1.8 }, E.out); to(glow0, 16.2, .9, { s: 1 });
+const big = node(fg, '<div class="big">Космическая система<br>достижений</div>', 960, 760, { o: 0 });
+to(big, 16.2, .9, { o: 1, y: 730 }, E.out); to(big, 19.2, .6, { o: 0, y: 715 }, E.in);
+const logo3 = node(fg, img('logo-sirius-light.svg', 210), 960, 905, { o: 0 });
+show(logo3, 16.9, .8); hide(logo3, 19.2, .6);
+const pat = node(fg, '<div class="pat"></div>', 960, 1090, { o: 0 });
+to(pat, 16.6, .9, { o: 1, y: 1044 }, E.out); to(pat, 19.2, .6, { o: 0, y: 1090 }, E.in);
+
+// ---------- сцена 4. Звёзды (0:20–0:37) ----------
+const SKY_STARS = [
+    { file: 'star.webp', w: 54, x: 840, y: 305 },
+    { file: 'bright_star.webp', w: 72, x: 1070, y: 280 },
+    { file: 'star.webp', w: 50, x: 1050, y: 505 },
+];
+const ph = node(fg, `<div class="phone"><div class="screen"><div class="ptitle">Робототехника</div>
+    <div class="psub">занятие 12 · 2 ак. часа</div><div class="pbtns"></div></div></div>`, -260, 430, { s: 1.12 });
+to(ph, 20.2, 1.0, { x: 330 }, E.out);
+const KIDS = [['А', 'Аня К.', '#e28d30'], ['Т', 'Тимур С.', '#4a7a62'], ['Л', 'Лев М.', '#4e6177'], ['С', 'Соня П.', '#a33924']];
+const cards = KIDS.map(([l, nm, col], i) => ({ l, nm, col, i })).reverse().map((k) =>
+    node(ph, `<div class="scard"><i style="background:${k.col}">${k.l}</i><b>${k.nm}</b><span>смахните или нажмите</span></div>`,
+        0, -42 + Math.min(k.i, 2) * 12, { s: 1 - Math.min(k.i, 2) * .06, o: k.i > 2 ? 0 : 1 })).reverse();
+const BTN = ['star.webp', 'bright_star.webp', 'sleeping_star.webp', 'asteroid.webp'];
+const btns = BTN.map((f, i) => node(ph, `<div class="pbtn">${img(f, 36)}</div>`, -102 + i * 68, 244));
+const finger = node(ph, '<div class="finger"></div>', -20, 40, { o: 0 });
+function advance(k, t) {            // карточка k уходит, следующие поднимаются
+    to(cards[k], t, .55, { x: 330, r: 16, o: 0 }, E.in);
+    for (let n = k + 1; n < cards.length; n++) {
+        const depth = Math.min(n - k - 1, 2);
+        to(cards[n], t + .1, .5, { y: -42 + depth * 12, s: 1 - depth * .06, o: 1 });
+    }
+}
+function fly(k, t, fromX, fromY) {  // звезда вылетает из телефона и встаёт на небо
+    const st = SKY_STARS[k], [sx, sy] = w2s(CAM4, st.x, st.y);
+    const f = node(fg, img(st.file, st.w * CAM4.s), fromX, fromY, { o: 0, s: .35 });
+    to(f, t, .15, { o: 1 }); to(f, t, 1.1, { x: sx, s: 1, r: 360 }); to(f, t, 1.1, { y: sy }, E.out);
+    to(f, t + 1.1, .01, { o: 0 }, E.lin);
+    const s = node(sky, img(st.file, st.w), st.x, st.y, { o: 0 });
+    to(s, t + 1.1, .01, { o: 1 }, E.lin); ping(s, t + 1.1, 1.4);
+}
+// 1) жест: смахнули — звезда
+to(finger, 21.5, .3, { o: 1 }); to(finger, 22.0, .5, { x: 190, o: 0 }, E.in); advance(0, 22.0); fly(0, 22.3, 420, 390);
+// 2) кнопка: яркая звезда
+to(finger, 23.4, .01, { x: -34, y: 250 }, E.lin); to(finger, 23.5, .3, { o: 1 });
+ping(btns[1], 24.0, 1.3); to(finger, 24.1, .3, { o: 0 }); advance(1, 24.3); fly(1, 24.5, 420, 390);
+// 3) ещё один жест
+to(finger, 31.4, .01, { x: -20, y: 40 }, E.lin); to(finger, 31.5, .3, { o: 1 }); to(finger, 32.0, .5, { x: 190, o: 0 }, E.in);
+advance(2, 32.0); fly(2, 32.3, 420, 390);
+to(ph, 35.9, .8, { x: -260 }, E.in);
+
+const MARKS = [
+    ['star.webp', 112, 'звезда', 'Работал', '+1', '+2', ''],
+    ['bright_star.webp', 128, 'яркая звезда', 'Удивил', '+2', '+4', ''],
+    ['sleeping_star.webp', 124, 'спящая звезда', 'Не в форме', '0', '0', ' zero'],
+    ['asteroid.webp', 136, 'астероид', 'Нарушил', '−3', '−6', ' neg'],
+];
+MARKS.forEach(([f, w, name, why, p1, p2, cls], i) => {
+    const x = 1200 + i * 175, t = 26.0 + i * .5;
+    const m = node(fg, `<div class="mark"><div class="mname">${name}</div><div class="mpic">${img(f, w)}</div><div class="mwhy">${why}</div></div>`,
+        x, 420, { o: 0, s: .6 });
+    pop(m, t); hide(m, 35.7 + i * .06);
+    const p = node(fg, `<div class="mpts${cls}">${p1}</div>`, x, 584, { o: 0, s: .6 });
+    pop(p, t + .25);
+    if (p1 !== p2) { ping(p, 31.3 + i * .16, 1.5); step(31.3 + i * .16 + .1, (on) => { p.firstChild.textContent = on ? p2 : p1; }); }
+    hide(p, 35.7 + i * .06);
+});
+const badge = node(fg, '<div class="badge">× 2 академических часа</div>', 1462, 214, { o: 0, s: .5 });
+pop(badge, 30.5); hide(badge, 35.7);
+title(20.8, 29.6, 'Звёзды — за каждое занятие');
+title(30.0, 36.2, 'Длиннее занятие — больше баллов');
+
+// ---------- сцена 5. Планеты (0:37–0:49) ----------
+const dip = node(sky, '<div class="diploma"><i></i><b style="top:42px"></b><b style="top:56px"></b><b style="top:70px;right:40px"></b><u></u></div>',
+    MERC.x, MERC.y, { o: 0, s: .7 });
+pop(dip, 37.3, .7);
+to(dip, 39.1, .9, { s: .5, r: 200 }, E.in); to(dip, 39.7, .3, { o: 0 }, E.in);
+fx(39.1, .8, (p) => {
+    const d = dip.firstChild;
+    d.style.height = `${128 - 32 * p}px`; d.style.borderRadius = `${6 + p * 42}px`;
+    for (const c of d.children) c.style.opacity = 1 - p;
+});
+const flash = node(sky, '<div class="ring"></div>', MERC.x, MERC.y, { o: 0, s: .3 });
+to(flash, 39.8, .15, { o: 1 }, E.out); to(flash, 39.8, .9, { s: 1.7 }, E.out); to(flash, 40.1, .6, { o: 0 }, E.in);
+PLANETS.forEach((p, i) => {
+    const tp = i === 0 ? 39.8 : 40.9 + i * .52;
+    const orb = node(sky, `<div class="orbit" style="width:${p.rx * 2}px;height:${p.ry * 2}px"></div>`, HOME.x, HOME.y, { o: 0 });
+    show(orb, 40.7 + i * .2, .9); hide(orb, 48.0, .8);
+    const pl = node(sky, img(p.file + '.webp', p.size), p.x, p.y, { o: 0, s: 0 });
+    pop(pl, tp, .7);
+    const h = p.file === 'saturn' ? p.size * .28 : p.size / 2;
+    const lb = node(sky, `<div class="plabel"><b>${p.pts}</b>${p.name}${p.file === 'earth' ? '<span>за помощь Гимназии</span>' : ''}</div>`,
+        p.x, p.y + h + 24 + (p.file === 'earth' ? 9 : 0), { o: 0 });
+    show(lb, Math.max(tp + .3, 41.6), .5); hide(lb, 48.0, .7);
+    if (p.file === 'earth') { ping(pl, 45.7, 1.4); ping(pl, 46.5, 1.25); }
+});
+title(37.6, 42.6, 'Планеты — за достижения');
+title(43.0, 48.4, 'От участия до гран-при');
+title(45.5, 48.4, 'И за помощь тоже', 1);
+
+// ---------- сцена 6. Созвездия (0:49–1:04) ----------
+const CH = [[190, 300], [255, 215], [335, 255], [405, 165], [485, 215], [550, 125], [630, 175], [690, 95]];
+const TRAV = [762, 152], NEXT = [838, 108];
+const lines = $('lines');
+lines.innerHTML = `<path id="chain" d="M${CH.map((p) => p.join(' ')).join('L')}" pathLength="1" fill="none" stroke="#f1edd4" stroke-width="2.4"
+    stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="1" stroke-dashoffset="1" opacity=".85"/>
+    <line id="l9" x1="${CH[7][0]}" y1="${CH[7][1]}" x2="${CH[7][0]}" y2="${CH[7][1]}" stroke="#f1edd4" stroke-width="2.2" stroke-dasharray="5 6" opacity="0"/>
+    <line id="l10" x1="${TRAV[0]}" y1="${TRAV[1]}" x2="${TRAV[0]}" y2="${TRAV[1]}" stroke="#f1edd4" stroke-width="2.2" stroke-dasharray="5 6" opacity="0"/>`;
+const chain = $('chain');
+const cnt = node(sky, '<div class="cnt"><b>0</b><span>занятий подряд</span></div>', 590, 322, { o: 0 });
+show(cnt, 50.2, .5);
+const cstars = CH.map(([x, y], i) => {
+    const s = node(sky, img('star.webp', 36), x, y, { o: 0, s: 0 });
+    pop(s, 50.6 + i * .42, .5);
+    ping(s, 55.5 + i * .05, 1.5);
+    return s;
+});
+fx(50.6, 7 * .42 + .01, (p) => { cnt.firstChild.firstChild.textContent = 1 + Math.round(p * 7); }, E.lin);
+fx(54.3, 1.4, (p) => { chain.setAttribute('stroke-dashoffset', (1 - p).toFixed(4)); });
+const reward = node(sky, '<div class="tag">Созвездие <b>+10 баллов</b></div>', 400, 68, { o: 0, s: .6 });
+pop(reward, 55.7); hide(reward, 63.2);
+const pulsar = node(sky, img('pulsar.webp', 92), 128, 196, { o: 0, s: 0 });
+pop(pulsar, 57.0);
+live((t) => { pulsar.firstChild.style.opacity = (.62 + .38 * Math.sin(t * 5.2)).toFixed(3); });
+const pulsarL = node(sky, '<div class="small">Пульсар</div>', 128, 240, { o: 0 });
+show(pulsarL, 57.3, .5); hide(pulsarL, 63.2);
+// путешественник не рвёт серию
+const trav = node(sky, img('traveler.svg', 46), TRAV[0], TRAV[1], { o: 0, s: 0 });
+const travL = node(sky, '<div class="small">уехал на конкурс</div>', TRAV[0], TRAV[1] + 36, { o: 0 });
+const s10 = node(sky, img('star.webp', 36), NEXT[0], NEXT[1], { o: 0, s: 0 });
+const grow = (id, a, b) => (p) => {
+    const l = $(id); l.setAttribute('opacity', p > 0 ? .8 : 0);
+    l.setAttribute('x2', a[0] + (b[0] - a[0]) * p); l.setAttribute('y2', a[1] + (b[1] - a[1]) * p);
+};
+fx(59.6, .6, grow('l9', CH[7], TRAV));
+pop(trav, 60.0); show(travL, 60.3, .4); hide(travL, 63.2);
+fx(61.0, .6, grow('l10', TRAV, NEXT));
+pop(s10, 61.4); ping(cnt, 61.6, 1.25);
+step(61.6, (on) => { if (on) cnt.firstChild.firstChild.textContent = 9; });
+hide(cnt, 63.0);
+title(49.6, 54.2, 'Созвездия — за постоянство');
+title(54.6, 59.0, 'Система замечает сама');
+title(59.4, 63.4, 'Уехал на конкурс — серия не прервётся');
+
+// ---------- сцена 7. Один счёт (1:04–1:20) ----------
+const F = { x: 960, y: 430 }, K = 2.7;
+const [fx0, fy0, fx1, fy1] = SH.fbb, fcx = (fx0 + fx1) / 2, fcy = (fy0 + fy1) / 2;
+const TINT = { steel: '#a9bcd6', navy: '#9fb0ee', green: '#8cc7a6', red: '#e9907a' };
+const TURN = { steel: 0, navy: -90, green: 180, red: 90 };       // поворот книжки корешком к центру
+const DIRV = { steel: [0, -1], navy: [1, 0], green: [0, 1], red: [-1, 0] };
+function bookSvg(key) {
+    const b = SH.books[key], [x0, y0, x1, y1] = b.bb, w = x1 - x0, h = y1 - y0, pad = 2;
+    let pts = [[.07, .08], [.5, .4], [.93, .08], [.93, .62], [.5, .9], [.07, .62]];   // подложка под вырезы значков
+    if (key === 'red' || key === 'navy') pts = pts.map(([a, c]) => [1 - a, 1 - c]);
+    const extra = b.extra.map((e) => `<path d="${e.d}" fill="${e.fill}" fill-rule="${e.rule}"/>`).join('');
+    return `<svg class="book" viewBox="${x0 - pad} ${y0 - pad} ${w + pad * 2} ${h + pad * 2}" style="width:${(w + pad * 2) * K}px">
+        <polygon points="${pts.map(([a, c]) => `${x0 + a * w},${y0 + c * h}`).join(' ')}" fill="#f1edd4"/>
+        <path d="${b.d}" fill="${b.fill}" fill-rule="${b.rule}" stroke="#f1edd4" stroke-width="1.2" stroke-linejoin="round"/>${extra}</svg>`;
+}
+const flowerSvg = (paths) => `<svg class="flower" viewBox="${fx0} ${fy0} ${fx1 - fx0} ${fy1 - fy0}" style="width:${(fx1 - fx0) * K}px">${
+    paths.map((p) => `<path d="${p.d}" fill="${p.fill}" fill-rule="${p.rule}"/>`).join('')}</svg>`;
+
+// подписи программ
+const prog = (x, y, name, dir, key, t, small) => {
+    const el = node(fg, `<div class="prog${small ? ' s' : ''}"><b>${name}</b><span style="color:${TINT[key]}">${dir}</span></div>`, x, y + 16, { o: 0 });
+    to(el, t, .6, { o: 1, y }, E.out); hide(el, 71.0 + rnd() * .3, .6);
+    return el;
+};
+prog(960, 54, 'Робототехника', 'Инженерная школа', 'steel', 65.0);
+prog(1575, 430, 'Театральная студия<br>«Здесь и сейчас»', 'Центр социальных компетенций', 'navy', 65.4);
+prog(960, 806, 'Биолаборатория', 'Центр наук о жизни', 'green', 65.8);
+const dsh = node(fg, '<div class="dsh">Детская школа искусств</div>', 300, 262, { o: 0 });
+show(dsh, 66.2); hide(dsh, 71.1, .6);
+prog(300, 326, 'Концертный хор', 'музыкальное отделение', 'red', 66.4, true);
+prog(300, 430, 'Художественная керамика', 'художественное отделение', 'red', 66.7, true);
+prog(300, 534, 'Современная хореография', 'хореографическое отделение', 'red', 67.0, true);
+
+// нити из звёзд
+function thread(a, b, t, n = 7, dur = 1.0) {
+    for (let j = 0; j < n; j++) {
+        const d = node(fg, '<div class="tdot"></div>', a[0], a[1], { o: 0, s: .6 + rnd() * .6 }), tj = t + j * .2;
+        to(d, tj, .15, { o: 1 }); to(d, tj, dur, { x: b[0], y: b[1] }); to(d, tj + dur - .2, .2, { o: 0 });
+    }
+}
+const START = 228;
+const startOf = (key) => [F.x + DIRV[key][0] * START, F.y + DIRV[key][1] * START];
+thread([960, 96], [960, 170], 67.4, 5, .7);
+thread([1385, 430], [1240, 430], 67.7, 7, .9);
+thread([960, 772], [960, 700], 68.0, 5, .7);
+const MERGE = [585, 430];
+thread([500, 326], MERGE, 67.6, 6, .9); thread([520, 430], MERGE, 67.8, 6, .8); thread([515, 534], MERGE, 68.0, 6, .9);
+thread(MERGE, [690, 430], 68.5, 9, .8);
+
+// книжки
+const books = {};
+[['steel', 68.2], ['navy', 68.6], ['green', 69.0], ['red', 69.6]].forEach(([key, t]) => {
+    const [sx, sy] = startOf(key);
+    const b = books[key] = node(fg, bookSvg(key), sx, sy, { o: 0, s: 0 });
+    pop(b, t, .7);
+    const pb = SH.petals[key];
+    const ax = ((pb[0] + pb[2]) / 2 - fcx) * K, ay = ((pb[1] + pb[3]) / 2 - fcy) * K;
+    to(b, 71.5, 1.7, { x: F.x + ax, y: F.y + ay, r: TURN[key] });
+    to(b, 71.5, 1.7, { s: 1.02 });
+    to(b, 73.2, .5, { o: 0 }, E.lin);
+});
+// цветок и рамка
+const flw = node(fg, '', F.x, F.y);
+const fglow = node(flw, '<div class="glow" style="width:640px;height:640px"></div>', 0, 0, { o: 0 });
+const core = node(flw, flowerSvg(SH.core), 0, 0, { o: 0 });
+const frame = node(flw, `<div class="fmask">${flowerSvg([SH.frame])}</div>`, 0, 0, { o: 0 });
+to(core, 73.1, .45, { o: 1 }, E.lin);
+ping(flw, 73.15, 1.08);
+to(fglow, 73.1, .4, { o: .8 }, E.out); to(fglow, 73.6, 1.4, { o: .25 });
+to(frame, 73.5, .01, { o: 1 }, E.lin);
+fx(73.5, 1.6, (p) => {
+    const m = `conic-gradient(from -90deg,#000 ${p * 360}deg,transparent ${p * 360 + .5}deg)`;
+    const el = frame.firstChild; el.style.webkitMaskImage = p >= 1 ? 'none' : m; el.style.maskImage = p >= 1 ? 'none' : m;
+});
+ping(flw, 75.1, 1.05);
+const score = node(fg, '<div class="score"><b>0</b><span>баллов на одном счёте</span></div>', 960, 766, { o: 0 });
+to(score, 75.0, .6, { o: 1, y: 748 }, E.out);
+fx(75.1, 1.9, (p) => { score.firstChild.firstChild.textContent = Math.round(83 * p); }, E.out);
+title(65.2, 73.4, 'Шесть программ. Четыре направления');
+title(74.0, 79.4, 'Один общий счёт');
+
+// ---------- сцена 8. Подарки (1:20–1:28) ----------
+const SX = [420, 780, 1140, 1500], SY = 400;
+hide(score, 79.4, .6);
+to(flw, 79.6, 1.3, { x: SX[0], y: SY, s: .34 });
+to(fglow, 79.6, .8, { o: 0 });
+const track = node(fg, '<div class="track" style="width:0"></div>', SX[0], SY, { o: 0 });
+show(track, 80.7, .2);
+fx(80.8, 3.9, (p) => { track.firstChild.style.width = `${p * (SX[3] - SX[0])}px`; }, E.lin);
+const ICON = [null,
+    '<svg width="44" height="44" viewBox="0 0 44 44" fill="none" stroke="#f1edd4" stroke-width="4" stroke-linecap="round"><path d="M8 12h4M18 12h18M8 22h4M18 22h18M8 32h4M18 32h18"/></svg>',
+    '<svg width="46" height="46" viewBox="0 0 46 46" fill="none" stroke="#f8c27c" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 24l10 10 18-22"/></svg>'];
+const CAPS = [['Накопление', '83 балла за год'], ['Каталог', 'подарки с ценами в баллах'], ['Предзаказ', 'педагог фиксирует выбор'], ['Фестиваль', 'подарок по своим баллам']];
+const s8 = [track];
+CAPS.forEach(([a, b], i) => {
+    const t = 80.8 + i * 1.3;
+    if (ICON[i]) { const st = node(fg, `<div class="step">${ICON[i]}</div>`, SX[i], SY, { o: 0, s: 0 }); pop(st, t); s8.push(st); }
+    const c = node(fg, `<div class="cap"><b>${a}</b><span>${b}</span></div>`, SX[i], SY + 150, { o: 0 });
+    to(c, t + .15, .5, { o: 1, y: SY + 132 }, E.out); s8.push(c);
+});
+const gift = node(fg, '', SX[3], SY, { o: 0, s: 0 });
+node(gift, '<div class="gbody"></div>', 0, 22);
+const lid = node(gift, '<div class="glid"></div>', 0, -34);
+pop(gift, 84.7); s8.push(gift);
+to(lid, 85.5, .7, { y: -112, x: 34, r: 24 }, E.out);
+for (let i = 0; i < 9; i++) {
+    const a = (-150 + i * 15 + rnd() * 8) * Math.PI / 180, dist = 150 + rnd() * 90;
+    const s = node(fg, img(i % 3 ? 'star.webp' : 'bright_star.webp', 34), SX[3], SY - 10, { o: 0, s: .3 });
+    const t = 85.55 + rnd() * .2;
+    to(s, t, .12, { o: 1 }); to(s, t, 1.3, { x: SX[3] + Math.cos(a) * dist, y: SY - 10 + Math.sin(a) * dist, s: 1, r: 200 * (rnd() - .5) }, E.out);
+    to(s, t + .9, .5, { o: 0 });
+}
+s8.forEach((el) => hide(el, 87.2, .6));
+title(81.0, 87.2, 'Баллы становятся подарками');
+
+// ---------- сцена 9. Финал (1:28–1:38) ----------
+to(flw, 88.0, 3.0, { x: HOME.x, y: HOME.y, s: .48 });
+hide(star0, 89.4, .6); hide(glow0, 89.4, .6);
+to(fglow, 90.4, 1.4, { o: .75 }, E.out);
+live((t) => { fglow.firstChild.style.opacity = (.8 + .2 * Math.sin(t * 2.1)).toFixed(3); });
+to(flw, 91.0, .2, { s: .54 }, E.out); to(flw, 91.2, .5, { s: .48 });
+title(90.6, 98.6, 'Каждое занятие — шаг вперёд.');
+title(92.6, 98.6, 'Каждое достижение — новое небесное тело.', 1);
+const logo9 = node(fg, img('logo-sirius-light.svg', 230), 1740, 96, { o: 0 });
+show(logo9, 94.0, 1.0);
+
+// ---------- проигрыватель ----------
+const SCENES = [[0, 'Хук'], [7, 'Проблема'], [15, 'Название'], [20, 'Звёзды'], [37, 'Планеты'], [49, 'Созвездия'], [64, 'Один счёт'], [80, 'Подарки'], [88, 'Финал']];
+const stage = $('stage'), ui = $('ui'), seekEl = $('seek'), tm = $('tm'), playBtn = $('play');
+let now = 0, playing = false, lastTs = 0;
+const fmt = (s) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+function fit() {
+    const k = Math.min(innerWidth / 1920, innerHeight / 1080);
+    stage.style.transform = `translate(-50%,-50%) scale(${k})`;
+}
+function draw() {
+    render(now);
+    seekEl.value = now; tm.textContent = `${fmt(now)} / ${fmt(DUR)}`;
+    playBtn.textContent = playing ? '❚❚' : (now >= DUR ? '↺' : '▶');
+}
+function tick(ts) {
+    if (!playing) return;
+    now = Math.min(DUR, now + Math.min(.1, (ts - lastTs) / 1000)); lastTs = ts;
+    if (now >= DUR) playing = false;
+    draw();
+    if (playing) requestAnimationFrame(tick);
+}
+function play() { if (now >= DUR) now = 0; playing = true; lastTs = performance.now(); requestAnimationFrame(tick); draw(); }
+function pause() { playing = false; draw(); }
+window.seek = (t) => { playing = false; now = Math.max(0, Math.min(DUR, t)); draw(); };
+playBtn.onclick = () => (playing ? pause() : play());
+seekEl.oninput = () => window.seek(+seekEl.value);
+SCENES.forEach(([t, name], i) => {
+    const b = document.createElement('button');
+    b.textContent = i + 1; b.title = name; b.style.marginLeft = '4px';
+    b.onclick = () => { window.seek(t); play(); };
+    $('chips').appendChild(b);
+});
+addEventListener('keydown', (e) => {
+    if (e.code === 'Space') { e.preventDefault(); playing ? pause() : play(); }
+    if (e.code === 'ArrowRight') window.seek(now + (e.shiftKey ? 5 : 1));
+    if (e.code === 'ArrowLeft') window.seek(now - (e.shiftKey ? 5 : 1));
+    if (e.code === 'KeyH') document.body.classList.toggle('clean');
+    if (e.code === 'KeyF') (document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen());
+});
+let idle;
+addEventListener('mousemove', () => { ui.classList.remove('hide'); clearTimeout(idle); idle = setTimeout(() => playing && ui.classList.add('hide'), 2500); });
+addEventListener('resize', fit);
+const q = new URLSearchParams(location.search);
+if (q.has('clean')) document.body.classList.add('clean');
+fit();
+document.fonts.ready.then(() => { window.ready = true; if (q.has('t')) window.seek(+q.get('t')); else play(); });
+draw();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!-- Временная иконка звезды-путешественника: ракета в цветах брендбука -->
+  <g transform="rotate(40 60 60)">
+    <path d="M60 6c16 14 24 34 24 56v22H36V62C36 40 44 20 60 6z" fill="#f1edd4" stroke="#1a2653" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M60 6c8 7 14 15 18 25H42c4-10 10-18 18-25z" fill="#e28d30" stroke="#1a2653" stroke-width="4" stroke-linejoin="round"/>
+    <circle cx="60" cy="52" r="10" fill="#91b0d2" stroke="#1a2653" stroke-width="4"/>
+    <path d="M36 62 20 80v14l16-8zM84 62l16 18v14l-16-8z" fill="#a33924" stroke="#1a2653" stroke-width="4" stroke-linejoin="round"/>
+    <path d="M48 88h24l-4 10c-2 6-4 12-8 18-4-6-6-12-8-18z" fill="#f8c27c" stroke="#e28d30" stroke-width="4" stroke-linejoin="round"/>
+  </g>
+</svg>
