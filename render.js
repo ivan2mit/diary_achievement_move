@@ -6,7 +6,7 @@ const CACHE = path.join(os.homedir(), 'Library/Caches/ms-playwright');
 const { chromium } = require(path.join(os.homedir(), '.npm/_npx/9833c18b2d85bc59/node_modules/playwright'));
 const CHROME = path.join(CACHE, 'chromium_headless_shell-1243/chrome-headless-shell-mac-arm64/chrome-headless-shell');
 const FFMPEG = path.join(CACHE, 'ffmpeg-1011/ffmpeg-mac');
-const FPS = +process.argv[2] || 30, OUT = process.argv[3] || path.join(__dirname, 'ролик.webm'), DUR = 98;
+const FPS = +process.argv[2] || 30, OUT = process.argv[3] || path.join(__dirname, 'ролик-v3.webm'), DUR = 98;
 
 (async () => {
     const browser = await chromium.launch({ executablePath: CHROME });
